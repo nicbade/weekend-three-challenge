@@ -6,15 +6,18 @@ $(document).ready(function() {
         $('.createTaskButton').on('click', function() {
                 console.log('Create button was clicked!');
                 var taskInput = $('.taskInput').val();
+                var taskDue = $('.taskDue').val();
                 var taskObject = {
-                    taskInput: taskInput
+                    task: taskInput,
+                    due: taskDue
                 }
                 $.ajax({
                         method: 'POST',
-                        url: 'server/modules/tasks.js',
+                        url: '/tasks',
                         data: taskObject,
                         success: function(response) {
                             console.log(response)
+                            getTasks();
                         }
                     }) // end ajax POST
             }) // end createTask listener
@@ -23,3 +26,13 @@ $(document).ready(function() {
 
 
     }) // end document ready
+
+function getTasks() {
+    $.ajax({
+        method: 'GET',
+        url: '/tasks',
+        success: function(response) {
+            console.log(response);
+        }
+    })
+}
