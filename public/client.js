@@ -33,7 +33,23 @@ $(document).ready(function() {
                         }
                     }) // end ajax Delete
             }) // end delete listener
+        $('#messageContainer').on('click', '.completedButton', function() {
+                console.log('Completed button clicked!');
+                var taskId = $(this).parent().data().id;
+                var taskUpdate = {
+                    task: taskId
+                }
+                $.ajax({
+                        method: 'PUT',
+                        url: '/tasks/' + taskId,
+                        data: taskUpdate,
+                        success: function(response) {
+                            getTasks();
+                            $(this).parent().css('color', 'green');
 
+                        }
+                    }) // end ajas PUT
+            }) // end complete listener
 
     }) // end document ready
 
@@ -55,10 +71,11 @@ function addTask(taskArray) {
         var taskAdd = taskArray[i];
         var $taskDiv = $('<div></div>');
         $taskDiv.data('id', taskAdd.id);
-        $taskDiv.append('<div class="task">TASK: ' + taskAdd.task + ' DUE: ' + taskAdd.due + '</div>');
+        $taskDiv.append('<div class="task">TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + '</div>');
         $taskDiv.append('<button class="deleteButton">Delete</button>');
+        $taskDiv.append('<button class="completedButton">Completed</button>');
         $('#messageContainer').prepend($taskDiv);
-        // $('#taskDiv').prepend('<p>TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + '</p>')
+
 
     }
 }

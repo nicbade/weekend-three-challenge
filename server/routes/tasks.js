@@ -61,4 +61,25 @@ router.delete('/:id', function(req, res) {
                 }
             }) // end pool.connect
     }) // end router.delete
+
+router.put('/:id', function(req, res) {
+        var taskId = req.params.id;
+        console.log('Task Put was hit!');
+        pool.connect(function(errorConnectingToDatabase, client, done) {
+                if (errorConnectingToDatabase) {
+                    console.log('Error connecting to Database PUT', errorConnectingToDatabase);
+                    res.sendStatus(500);
+                } else {
+                    client.query('UPDATE tasks SET task=$1 WHERE id=$2;', [req.body.task, taskId], function(errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query PUT', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            res.sendStatus(200);
+                        }
+                    })
+                }
+            }) // end pool.connect PUT
+    }) // end router.put
 module.exports = router;
