@@ -71,9 +71,9 @@ function addTask(taskArray) {
         var taskAdd = taskArray[i];
         var $taskDiv = $('<div></div>');
         $taskDiv.data('id', taskAdd.id);
-        $taskDiv.append('<div class="task">TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + '</div>');
+        var completeButton = ('<button class="completedButton">Completed</button>');
+        $taskDiv.append('<div class="task">TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + " " + completeButton + '</div>');
         $taskDiv.append('<button class="deleteButton">Delete</button>');
-        $taskDiv.append('<button class="completedButton">Completed</button>');
         $('#messageContainer').prepend($taskDiv);
 
 
