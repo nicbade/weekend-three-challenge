@@ -7,16 +7,16 @@ $(document).ready(function() {
                 console.log('Create button was clicked!');
                 var taskInput = $('.taskInput').val();
                 var taskObject = {
-                        taskInput: taskInput
-                    }
-                    // $.ajax({
-                    //         method: 'POST',
-                    //         url: 'server/modules/tasks.js',
-                    //         data: taskObject,
-                    //         success: function(response) {
-                    //             console.log(response)
-                    //         }
-                    //     }) // end ajax POST
+                    taskInput: taskInput
+                }
+                $.ajax({
+                        method: 'POST',
+                        url: 'server/modules/tasks.js',
+                        data: taskObject,
+                        success: function(response) {
+                            console.log(response)
+                        }
+                    }) // end ajax POST
             }) // end createTask listener
 
 
