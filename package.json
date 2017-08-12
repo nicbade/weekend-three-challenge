@@ -1,19 +1,26 @@
 {
-  "name": "weekend-three-challenge",
-  "version": "1.0.0",
-  "description": "- [ ] create public file insert index.html, client.js, styles.css - [ ] create apps.js - [ ] create a module folder with tasks.js - [ ] create a routes folder with pool.js - [ ] sketch out html with two inputs and send button and connect all files - [ ] in client.js set up basic jquery and button listeners - [ ] create route POST to database - [ ] data appends to the DOM - [ ] create route GET - [ ] data removes from DOM and replaces with updated info - [ ] delete button, removes data from html and database - [ ] complete button, changes css color and checks off tasks - [ ] style it",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nicbade/weekend-three-challenge.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nicbade/weekend-three-challenge/issues"
-  },
-  "homepage": "https://github.com/nicbade/weekend-three-challenge#readme"
+    "name": "weekend-three-challenge",
+    "version": "1.0.0",
+    "description": "- [ ] create public file insert index.html, client.js, styles.css - [ ] create apps.js - [ ] create a module folder with tasks.js - [ ] create a routes folder with pool.js - [ ] sketch out html with two inputs and send button and connect all files - [ ] in client.js set up basic jquery and button listeners - [ ] create route POST to database - [ ] data appends to the DOM - [ ] create route GET - [ ] data removes from DOM and replaces with updated info - [ ] delete button, removes data from html and database - [ ] complete button, changes css color and checks off tasks - [ ] style it",
+    "main": "server/app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server/app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nicbade/weekend-three-challenge.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nicbade/weekend-three-challenge/issues"
+    },
+    "homepage": "https://github.com/nicbade/weekend-three-challenge#readme",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "express": "^4.15.4",
+        "pg": "^7.1.0"
+    },
+    "devDependencies": {}
 }

@@ -4,8 +4,8 @@
 - [x] create apps.js
 - [x] create a module folder with tasks.js
 - [x] create a routes folder with pool.js
-- [ ] sketch out html with two inputs and send button and connect all files
-- [ ] in client.js set up basic jquery and button listeners
+- [x] sketch out html with two inputs and send button and connect all files
+- [x] in client.js set up basic jquery and button listeners
 - [ ] create route POST to database
 - [ ] data appends to the DOM
 - [ ] create route GET
