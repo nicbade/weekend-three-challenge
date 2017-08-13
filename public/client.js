@@ -45,7 +45,7 @@ $(document).ready(function() {
 
         $('#tableContainer').on('click', '.completedButton', function() {
                 console.log('Completed button clicked!');
-                //$('.task').toggleClass('notComplete');
+                $('.task').toggleClass('complete');
                 var taskId = $(this).parent().parent().data().id;
                 $.ajax({
                         method: 'PUT',
@@ -56,6 +56,7 @@ $(document).ready(function() {
                     }) // end ajax PUT
             }) // end complete listener
     }) // end document ready
+
 
 function getTasks() {
     $.ajax({
@@ -80,3 +81,11 @@ function addTask(taskArray) {
         $('#tableContainer').prepend($taskRow);
     } // end forLoop
 } // end addTask function
+
+// function complete() {
+//     if ($('.task').hasClass('notComplete')) {
+//         $('.task').css('color', 'grey');
+//     } else {
+//         $('.task').css('color', 'green');
+//     }
+// }

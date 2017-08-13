@@ -1,5 +1,9 @@
 .notComplete {
-    background-color: green;
+    background-color: #9F8585;
+}
+
+.complete {
+    background-color: #1BDD1B;
 }
 
 table {
