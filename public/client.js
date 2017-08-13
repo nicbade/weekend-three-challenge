@@ -7,9 +7,18 @@ $(document).ready(function() {
                 console.log('Create button was clicked!');
                 var taskInput = $('.taskInput').val();
                 var taskDue = $('.taskDue').val();
+                var taskComplete = function completed() {
+                    if ($('.completedButton').hasClass('notComplete')) {
+                        taskComplete = false;
+                    } else {
+                        taskComplete = true;
+                    }
+
+                }
                 var taskObject = {
                     task: taskInput,
-                    due: taskDue
+                    due: taskDue,
+                    completed: taskComplete
                 }
                 $.ajax({
                         method: 'POST',
@@ -35,22 +44,15 @@ $(document).ready(function() {
             }) // end delete listener
         $('#messageContainer').on('click', '.completedButton', function() {
                 console.log('Completed button clicked!');
-                $('.task').toggleClass('notComplete');
+                //$('.task').toggleClass('notComplete');
                 var taskId = $(this).parent().data().id;
-                var taskBoolean = false;
-                complete();
-                console.log(taskBoolean)
-                var taskUpdate = {
-                    complete: taskBoolean
-                }
                 $.ajax({
                         method: 'PUT',
                         url: '/tasks/' + taskId,
-                        data: taskUpdate,
                         success: function(response) {
                             getTasks();
                         }
-                    }) // end ajas PUT
+                    }) // end ajax PUT
             }) // end complete listener
 
     }) // end document ready
@@ -70,10 +72,10 @@ function addTask(taskArray) {
     $('#messageContainer').empty(); // clears div
     for (var i = 0; i < taskArray.length; i++) {
         var taskAdd = taskArray[i];
-        var $taskDiv = $('<div></div>');
+        var $taskDiv = $('<table></table>');
         $taskDiv.data('id', taskAdd.id);
         var completeButton = ('<button class="completedButton">Completed</button>');
-        $taskDiv.append('<div class="task"><p>TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + " " + completeButton + '</p></div>');
+        $taskDiv.append('<td class = "task">' + taskAdd.task + '</td><td>' + taskAdd.due + "<td></td><td>" + completeButton + '</td>');
         $taskDiv.append('<button class="deleteButton">Delete</button>');
         $('#messageContainer').prepend($taskDiv);
 
@@ -81,11 +83,10 @@ function addTask(taskArray) {
     } // end forLoop
 } // end addTask function
 
-function complete() {
-    var taskBoolean = true;
-    if ($(".task").hasClass("task") == true) {
-        taskBoolean = true;
-    } else {
-        taskBoolean = false;
-    }
-} // not working
+// function complete() {
+//     if (taskAdd == "completed") {
+//         var completeButton = ('<button class="completedButton">Completed</button>');
+//     } else {
+//         completeButton = ('<button class ')
+//     }
+// } // not working
