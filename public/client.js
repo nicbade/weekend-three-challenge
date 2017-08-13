@@ -37,18 +37,18 @@ $(document).ready(function() {
                 console.log('Completed button clicked!');
                 $('.task').toggleClass('notComplete');
                 var taskId = $(this).parent().data().id;
+                var taskBoolean = false;
+                complete();
+                console.log(taskBoolean)
                 var taskUpdate = {
-                    task: taskId
+                    complete: taskBoolean
                 }
                 $.ajax({
                         method: 'PUT',
                         url: '/tasks/' + taskId,
                         data: taskUpdate,
                         success: function(response) {
-
                             getTasks();
-                            //$(this).parent().css('color', 'green');
-
                         }
                     }) // end ajas PUT
             }) // end complete listener
@@ -73,10 +73,19 @@ function addTask(taskArray) {
         var $taskDiv = $('<div></div>');
         $taskDiv.data('id', taskAdd.id);
         var completeButton = ('<button class="completedButton">Completed</button>');
-        $taskDiv.append('<div class="task">TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + " " + completeButton + '</div>');
+        $taskDiv.append('<div class="task"><p>TASK: ' + taskAdd.task + ' DUE BY: ' + taskAdd.due + " " + completeButton + '</p></div>');
         $taskDiv.append('<button class="deleteButton">Delete</button>');
         $('#messageContainer').prepend($taskDiv);
 
 
     } // end forLoop
 } // end addTask function
+
+function complete() {
+    var taskBoolean = true;
+    if ($(".task").hasClass("task") == true) {
+        taskBoolean = true;
+    } else {
+        taskBoolean = false;
+    }
+} // not working
