@@ -35,6 +35,7 @@ $(document).ready(function() {
             }) // end delete listener
         $('#messageContainer').on('click', '.completedButton', function() {
                 console.log('Completed button clicked!');
+                $('.task').toggleClass('notComplete');
                 var taskId = $(this).parent().data().id;
                 var taskUpdate = {
                     task: taskId
@@ -44,8 +45,9 @@ $(document).ready(function() {
                         url: '/tasks/' + taskId,
                         data: taskUpdate,
                         success: function(response) {
+
                             getTasks();
-                            $(this).parent().css('color', 'green');
+                            //$(this).parent().css('color', 'green');
 
                         }
                     }) // end ajas PUT
@@ -66,7 +68,6 @@ function getTasks() {
 
 function addTask(taskArray) {
     $('#messageContainer').empty(); // clears div
-
     for (var i = 0; i < taskArray.length; i++) {
         var taskAdd = taskArray[i];
         var $taskDiv = $('<div></div>');
@@ -77,5 +78,5 @@ function addTask(taskArray) {
         $('#messageContainer').prepend($taskDiv);
 
 
-    }
-}
+    } // end forLoop
+} // end addTask function
