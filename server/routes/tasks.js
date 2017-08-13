@@ -69,7 +69,7 @@ router.put('/:id', function(req, res) {
                     console.log('Error connecting to Database PUT', errorConnectingToDatabase);
                     res.sendStatus(500);
                 } else {
-                    client.query('UPDATE tasks SET completed = "completed" WHERE id = $1;', [req.params.id], function(errorMakingQuery, result) {
+                    client.query('UPDATE tasks SET completed = "completed" WHERE id=$1;', [req.params.id], function(errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query PUT', errorMakingQuery);

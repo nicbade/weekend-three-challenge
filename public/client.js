@@ -13,7 +13,6 @@ $(document).ready(function() {
                     } else {
                         taskComplete = true;
                     }
-
                 }
                 var taskObject = {
                     task: taskInput,
@@ -30,7 +29,8 @@ $(document).ready(function() {
                         }
                     }) // end ajax POST
             }) // end createTask listener
-        $('#messageContainer').on('click', '.deleteButton', function() {
+
+        $('#tableContainer').on('click', '.deleteButton', function() {
                 console.log('Delete button clicked!');
                 var taskId = $(this).parent().data().id;
                 console.log('task id is', taskId);
@@ -42,10 +42,11 @@ $(document).ready(function() {
                         }
                     }) // end ajax Delete
             }) // end delete listener
-        $('#messageContainer').on('click', '.completedButton', function() {
+
+        $('#tableContainer').on('click', '.completedButton', function() {
                 console.log('Completed button clicked!');
                 //$('.task').toggleClass('notComplete');
-                var taskId = $(this).parent().data().id;
+                var taskId = $(this).parent().parent().data().id;
                 $.ajax({
                         method: 'PUT',
                         url: '/tasks/' + taskId,
@@ -54,7 +55,6 @@ $(document).ready(function() {
                         }
                     }) // end ajax PUT
             }) // end complete listener
-
     }) // end document ready
 
 function getTasks() {
@@ -69,24 +69,14 @@ function getTasks() {
 }
 
 function addTask(taskArray) {
-    $('#messageContainer').empty(); // clears div
+    $('#tableContainer').empty(); // clears div
     for (var i = 0; i < taskArray.length; i++) {
         var taskAdd = taskArray[i];
-        var $taskDiv = $('<table></table>');
-        $taskDiv.data('id', taskAdd.id);
+        var $taskRow = $('<tr></tr>');
+        $taskRow.data('id', taskAdd.id);
         var completeButton = ('<button class="completedButton">Completed</button>');
-        $taskDiv.append('<td class = "task">' + taskAdd.task + '</td><td>' + taskAdd.due + "<td></td><td>" + completeButton + '</td>');
-        $taskDiv.append('<button class="deleteButton">Delete</button>');
-        $('#messageContainer').prepend($taskDiv);
-
-
+        $taskRow.append('<td class = "task">' + taskAdd.task + '</td><td>' + taskAdd.due + "</td><td>" + completeButton + '</td>');
+        $taskRow.append('<button class="deleteButton">Delete</button>');
+        $('#tableContainer').prepend($taskRow);
     } // end forLoop
 } // end addTask function
-
-// function complete() {
-//     if (taskAdd == "completed") {
-//         var completeButton = ('<button class="completedButton">Completed</button>');
-//     } else {
-//         completeButton = ('<button class ')
-//     }
-// } // not working
