@@ -45,11 +45,10 @@ $(document).ready(function() {
 
         $('#tableContainer').on('click', '.completedButton', function() {
                 console.log('Completed button clicked!');
-                $('.task').toggleClass('complete');
-                var taskId = $(this).parent().parent().data().id;
+                var taskId = $(this).parent().parent().data().id; //give a number
                 $.ajax({
                         method: 'PUT',
-                        url: '/tasks/' + taskId,
+                        url: '/tasks/' + taskId, //gives a number
                         success: function(response) {
                             getTasks();
                         }
@@ -81,11 +80,3 @@ function addTask(taskArray) {
         $('#tableContainer').prepend($taskRow);
     } // end forLoop
 } // end addTask function
-
-// function complete() {
-//     if ($('.task').hasClass('notComplete')) {
-//         $('.task').css('color', 'grey');
-//     } else {
-//         $('.task').css('color', 'green');
-//     }
-// }
