@@ -67,7 +67,7 @@ function getTasks() {
         }
     })
 }
-
+// need to give completed button a value then add that to the PUT ajax
 function addTask(taskArray) {
     $('#tableContainer').empty(); // clears div
     for (var i = 0; i < taskArray.length; i++) {
